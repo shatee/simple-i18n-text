@@ -9,11 +9,11 @@ import Messages from './Messages';
 
 export default class Translator {
 
-  _context;
+  _configure;
   _messages = {};
 
-  constructor(context) {
-    this._context = context;
+  constructor(configure) {
+    this._configure = configure;
   }
 
   /**
@@ -30,9 +30,10 @@ export default class Translator {
    * @param {string} sourceText
    * @param {Object} params?
    * @param {TranslateOption} options?
+   * @return {string}
    */
   translate(sourceText, params = {}, options = {}) {
-    const locale = options.locale || this._context.locale;
+    const locale = options.locale || this._configure.locale;
     const text = this._messages[locale] ? this._messages[locale].getText(sourceText, false) : sourceText;
     return this._assign(text, params);
   }
@@ -42,9 +43,10 @@ export default class Translator {
    * @param {string} sourceText
    * @param {Object} params?
    * @param {TranslateOption} options?
+   * @return {string}
    */
   pluralTranslate(sourceText, params = {}, options = {}) {
-    const locale = options.locale || this._context.locale;
+    const locale = options.locale || this._configure.locale;
     const text = this._messages[locale] ? this._messages[locale].getText(sourceText, this._isPlural(params)) : sourceText;
     return this._assign(text, params);
   }
@@ -57,7 +59,7 @@ export default class Translator {
    */
   _assign(text, params) {
     for (const key in params) {
-      text = text.replace(new RegExp(this._context.placeholderTokenLeft + key + this._context.placeholderTokenRight), encodeURIComponent(params[key]));
+      text = text.replace(new RegExp(this._configure.placeholderTokenLeft + key + this._configure.placeholderTokenRight), encodeURIComponent(params[key]));
     }
     return text;
   }
@@ -68,14 +70,14 @@ export default class Translator {
    * @private
    */
   _isPlural(params) {
-    const pluralParam = params[this._context.pluralParamKey];
+    const pluralParam = params[this._configure.pluralParamKey];
 
     switch(typeof pluralParam) {
       case 'number':
         return pluralParam > 1;
       case 'string':
         // remove comma (ex: 1,000,000 -> 1000000)
-        return parseInt(pluralParam.replace(/,/g, '')) > 1;
+        return parseInt(pluralParam.replace(/,/g, ''), 10) > 1;
       default:
         return false;
     }

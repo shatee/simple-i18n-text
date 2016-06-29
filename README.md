@@ -51,23 +51,23 @@ pt('%name%さんが%num%個の動画を投稿しました', {num: 2}); // return
 
 ### Configuration
 
-Edit context
+Edit configure
 
 ```javascript
-import {context} from 'i18n-text-simply';
+import {configure} from 'i18n-text-simply';
 
 // set the use messages locale
 // default 'en-US'
-context.locale = 'en-US';
+configure.locale = 'en-US';
 
 // set the placeholder token
 // default left: '%', right: '%'
 // (e.g. "{{" and "}}" to t('{{foo}}が欲しい', {foo: 'お金'})
-context.replacerTokenLeft = '%';
-context.replacerTokenRight = '%';
+configure.replacerTokenLeft = '%';
+configure.replacerTokenRight = '%';
 
 // set the plural translation parameter key
 // default "num"
 // (e.g. set "n" to pt('%n%冊の本', {n: 1}) 
-context.pluralParamKey = 'num';
+configure.pluralParamKey = 'num';
 ```
