@@ -1,12 +1,10 @@
 'use strict';
 
 import context from './context';
-import MessageRepository from './MessageRepository';
 import Translator from './Translator';
 
-const messageRepository = new MessageRepository();
-const translator = new Translator(context, messageRepository);
-const t = translator.translate;
-const pt = translator.pluralTranslate;
+const translator = new Translator(context);
+const t = translator.translate.bind(translator);
+const pt = translator.pluralTranslate.bind(translator);
 
-export {context, messageRepository, translator, t, pt};
+export {context, translator, t, pt};
