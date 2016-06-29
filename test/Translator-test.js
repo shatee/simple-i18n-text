@@ -1,10 +1,10 @@
 'use strict';
 
 import assert from 'power-assert';
-import context from '../src/context';
+import configure from '../src/configure';
 import Translator from '../src/Translator';
 
-const translator = new Translator(context);
+const translator = new Translator(configure);
 
 translator.setMessages('en-US', {
   ['焼きリンゴ']: 'a baked apple',
@@ -32,10 +32,10 @@ translator.setMessages('zh-TW', {
 describe('Translator', () => {
 
   beforeEach(() => {
-    context.locale = 'en-US';
-    context.placeholderTokenLeft = '%';
-    context.placeholderTokenRight = '%';
-    context.pluralParamKey = 'num';
+    configure.locale = 'en-US';
+    configure.placeholderTokenLeft = '%';
+    configure.placeholderTokenRight = '%';
+    configure.pluralParamKey = 'num';
   });
 
   describe('Translator#translate', () => {
@@ -97,9 +97,9 @@ describe('Translator', () => {
     });
 
     it('custom context', () => {
-      context.placeholderTokenLeft = '{{';
-      context.placeholderTokenRight = '}}';
-      context.pluralParamKey = 'n';
+      configure.placeholderTokenLeft = '{{';
+      configure.placeholderTokenRight = '}}';
+      configure.pluralParamKey = 'n';
 
       const translated = translator.pluralTranslate('私は{{n}}冊の本を持っています', {
         n: 10

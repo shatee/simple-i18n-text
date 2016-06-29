@@ -14,13 +14,8 @@
     },
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "suitcss-classnames"
-  ],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
+    "eslint:recommended"
   ],
   "rules": {
     "radix": 2,
@@ -142,12 +137,6 @@
     "prefer-reflect": 0,
     "prefer-spread": 2,
     "prefer-template": 2,
-    "react/jsx-no-bind": [
-      2,
-      {
-        "ignoreRefs": true
-      }
-    ],
     "require-yield": 2,
     "quotes": [
       2,
@@ -176,11 +165,6 @@
         "requireParamDescription": false,
         "requireReturnDescription": false
       }
-    ],
-    // React
-    "react/no-danger": 0,
-    // TODO: 後でerrorにする
-    "react/forbid-prop-types": 1,
-    "suitcss-classnames/states": 2
+    ]
   }
 }
