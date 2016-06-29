@@ -1,7 +1,7 @@
 {
-  "name": "translate-js",
+  "name": "i18n-text-simply",
   "version": "0.0.1",
-  "description": "simple translation library",
+  "description": "i18n text translation simply",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib --source-maps inline",

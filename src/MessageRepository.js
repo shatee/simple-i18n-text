@@ -29,7 +29,7 @@ export default class MessageRepository {
 
     const tmpText = this.messages[locale][sourceText];
 
-    // plural に対応している場合配列になっている。
+    // Array in case of plural
     if (Array.isArray(tmpText)) {
       if (isPlural && tmpText[1]) {
         return tmpText[1];

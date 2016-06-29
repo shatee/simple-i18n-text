@@ -1,7 +1,5 @@
 'use strict';
 
-import MessageRepository from './MessageRepository';
-
 /**
  * @typedef {Object} TranslateOption
  * @property {string} locale
@@ -9,14 +7,12 @@ import MessageRepository from './MessageRepository';
 
 export default class Translator {
 
-  defaultLocale = 'en-US';
-  replacerTokenLeft = '%';
-  replacerTokenRight = '%';
-  pluralParamKey = 'num';
+  _context;
   _messageRepository;
 
-  constructor() {
-    this._messageRepository = new MessageRepository();
+  constructor(context, messageRepository) {
+    this._context = context;
+    this._messageRepository = messageRepository;
   }
 
   /**
@@ -35,7 +31,7 @@ export default class Translator {
    * @param {TranslateOption} options?
    */
   translate(sourceText, params = {}, options = {}) {
-    const locale = options.locale || this.defaultLocale;
+    const locale = options.locale || this._context.locale;
     const text = this._messageRepository.getText(locale, sourceText, false);
     return this._assign(text, params);
   }
@@ -47,7 +43,7 @@ export default class Translator {
    * @param {TranslateOption} options?
    */
   pluralTranslate(sourceText, params = {}, options = {}) {
-    const locale = options.locale || this.defaultLocale;
+    const locale = options.locale || this._context.locale;
     const text = this._messageRepository.getText(locale, sourceText, this._isPlural(params));
     return this._assign(text, params);
   }
@@ -60,7 +56,7 @@ export default class Translator {
    */
   _assign(text, params) {
     for (const key in params) {
-      text = text.replace(new RegExp(this.replacerTokenLeft + key + this.replacerTokenRight), encodeURIComponent(params[key]));
+      text = text.replace(new RegExp(this._context.replacerTokenLeft + key + this._context.replacerTokenRight), encodeURIComponent(params[key]));
     }
     return text;
   }
@@ -71,17 +67,13 @@ export default class Translator {
    * @private
    */
   _isPlural(params) {
-    if (!params.hasOwnProperty(this.pluralParamKey)) {
-      return false;
-    }
-
-    const pluralParam = params[this.pluralParamKey];
+    const pluralParam = params[this._context.pluralParamKey];
 
     switch(typeof pluralParam) {
       case 'number':
         return pluralParam > 1;
       case 'string':
-        // remove comma (ex: 1,000,000)
+        // remove comma (ex: 1,000,000 -> 1000000)
         return parseInt(pluralParam.replace(/,/g, '')) > 1;
       default:
         return false;
