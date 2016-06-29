@@ -1,0 +1,34 @@
+{
+  "name": "i18n-text-simply",
+  "version": "0.0.1",
+  "description": "i18n text translation simply",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src --out-dir lib --source-maps inline",
+    "test": "mocha ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shatee/translate-js.git"
+  },
+  "keywords": [
+    "translate",
+    "i18n"
+  ],
+  "author": "SHATE",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/shatee/translate-js/issues"
+  },
+  "homepage": "https://github.com/shatee/translate-js#readme",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-plugin-transform-class-properties": "^6.10.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-power-assert": "^1.0.0",
+    "babel-register": "^6.9.0",
+    "eslint": "^2.13.1",
+    "mocha": "^2.5.3",
+    "power-assert": "^1.4.1"
+  }
+}
