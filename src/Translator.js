@@ -1,5 +1,7 @@
 'use strict';
 
+import Messages from './Messages';
+
 /**
  * @typedef {Object} TranslateOption
  * @property {string} locale
@@ -8,11 +10,10 @@
 export default class Translator {
 
   _context;
-  _messageRepository;
+  _messages = {};
 
-  constructor(context, messageRepository) {
+  constructor(context) {
     this._context = context;
-    this._messageRepository = messageRepository;
   }
 
   /**
@@ -21,7 +22,7 @@ export default class Translator {
    * @param {Object} messages
    */
   setMessages(locale, messages) {
-    this._messageRepository.setMessages(locale, messages);
+    this._messages[locale] = new Messages(locale, messages);
   }
 
   /**
@@ -32,7 +33,7 @@ export default class Translator {
    */
   translate(sourceText, params = {}, options = {}) {
     const locale = options.locale || this._context.locale;
-    const text = this._messageRepository.getText(locale, sourceText, false);
+    const text = this._messages[locale] ? this._messages[locale].getText(sourceText, false) : sourceText;
     return this._assign(text, params);
   }
 
@@ -44,7 +45,7 @@ export default class Translator {
    */
   pluralTranslate(sourceText, params = {}, options = {}) {
     const locale = options.locale || this._context.locale;
-    const text = this._messageRepository.getText(locale, sourceText, this._isPlural(params));
+    const text = this._messages[locale] ? this._messages[locale].getText(sourceText, this._isPlural(params)) : sourceText;
     return this._assign(text, params);
   }
 
@@ -56,7 +57,7 @@ export default class Translator {
    */
   _assign(text, params) {
     for (const key in params) {
-      text = text.replace(new RegExp(this._context.replacerTokenLeft + key + this._context.replacerTokenRight), encodeURIComponent(params[key]));
+      text = text.replace(new RegExp(this._context.placeholderTokenLeft + key + this._context.placeholderTokenRight), encodeURIComponent(params[key]));
     }
     return text;
   }

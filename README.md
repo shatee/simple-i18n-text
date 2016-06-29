@@ -17,9 +17,9 @@ Basic translation, use `t` function.
 When replace partial text, use placeholder.  
 
 ```javascript
-import {messageRepository, t} from 'i18n-text-simply';
+import {translator, t} from 'i18n-text-simply';
 
-messageRepository.setMessages('en-US', {
+translator.setMessages('en-US', {
   ['彼はかっこいい。']: 'He is cool.',
   ['%name%はかわいい。']: '%name% is cute.'
 });
@@ -36,9 +36,9 @@ In case of plural translation, use `pt` function.
 And use `num` parameter.
 
 ```javascript
-import {messageRepository, pt} from 'i18n-text-simply';
+import {translator, pt} from 'i18n-text-simply';
 
-messageRepository.setMessages('en-US', {
+translator.setMessages('en-US', {
   ['%name%さんが%num%個の動画を投稿しました']: [
     '%name% uploaded a video',
     '%name% uploaded %num% videos'

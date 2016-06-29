@@ -2,7 +2,7 @@
 
 export default {
   locale: 'en-US',
-  replacerTokenLeft: '%',
-  replacerTokenRight: '%',
+  placeholderTokenLeft: '%',
+  placeholderTokenRight: '%',
   pluralParamKey: 'num'
 };

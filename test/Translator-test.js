@@ -2,13 +2,11 @@
 
 import assert from 'power-assert';
 import context from '../src/context';
-import MessageRepository from '../src/MessageRepository';
 import Translator from '../src/Translator';
 
-const messageRepository = new MessageRepository();
-const translator = new Translator(context, messageRepository);
+const translator = new Translator(context);
 
-messageRepository.setMessages('en-US', {
+translator.setMessages('en-US', {
   ['焼きリンゴ']: 'a baked apple',
   ['%name%は%target%を食べていた']: '%name% was eating an %target%',
   ['%name%さんが%num%個の動画を投稿しました']: [
@@ -21,7 +19,7 @@ messageRepository.setMessages('en-US', {
   ]
 });
 
-messageRepository.setMessages('zh-TW', {
+translator.setMessages('zh-TW', {
   ['焼きリンゴ']: '燒烤蘋果',
   ['%name%は%target%を食べていた']: '%name%吃著%target%',
   ['%name%さんが%num%個の動画を投稿しました']: [
@@ -35,8 +33,8 @@ describe('Translator', () => {
 
   beforeEach(() => {
     context.locale = 'en-US';
-    context.replacerTokenLeft = '%';
-    context.replacerTokenRight = '%';
+    context.placeholderTokenLeft = '%';
+    context.placeholderTokenRight = '%';
     context.pluralParamKey = 'num';
   });
 
@@ -99,8 +97,8 @@ describe('Translator', () => {
     });
 
     it('custom context', () => {
-      context.replacerTokenLeft = '{{';
-      context.replacerTokenRight = '}}';
+      context.placeholderTokenLeft = '{{';
+      context.placeholderTokenRight = '}}';
       context.pluralParamKey = 'n';
 
       const translated = translator.pluralTranslate('私は{{n}}冊の本を持っています', {
