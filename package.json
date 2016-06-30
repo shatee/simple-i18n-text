@@ -1,11 +1,12 @@
 {
-  "name": "i18n-text-simply",
+  "name": "simple-i18n-text",
   "version": "0.0.1",
-  "description": "i18n text translation simply",
+  "description": "i18n simple text translation",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir lib --source-maps inline",
     "lint": "eslint ./src",
+    "prepublish": "npm run build",
     "test": "mocha ./test"
   },
   "repository": {

@@ -1,23 +1,23 @@
-# i18n-text-simply
+# simple-i18n-text
 
-I18n translation library.  
-Original language is supposed to Japanese.
+An i18n translation library.  
+The original language is supposed to be Japanese.
 
 ## Install
 
 ```
-npm install i18n-text-simply
+npm install simple-i18n-text
 ```
 
 ## Usage
 
 ### Basis
 
-Basic translation, use `t` function.  
-When replace partial text, use placeholder.  
+For basic translation, use function `t`.
+To replace partial text, use placeholder.
 
 ```javascript
-import {translator, t} from 'i18n-text-simply';
+import {translator, t} from 'simple-i18n-text';
 
 translator.setMessages('en-US', {
   ['彼はかっこいい。']: 'He is cool.',
@@ -30,13 +30,13 @@ t('彼はかっこいい。'); // returns: 'He is cool.'
 t('%name%はかわいい。', {name: 'Sarah'}); // returns: 'Sarah is cute.'
 ```
 
-### Plural
+### Plural Translation
 
-In case of plural translation, use `pt` function.  
-And use `num` parameter.
+In case of translation plurals, use function `pt`.
+Then use parameter `num` for the numbers.
 
 ```javascript
-import {translator, pt} from 'i18n-text-simply';
+import {translator, pt} from 'simple-i18n-text';
 
 translator.setMessages('en-US', {
   ['%name%さんが%num%個の動画を投稿しました']: [
@@ -51,12 +51,12 @@ pt('%name%さんが%num%個の動画を投稿しました', {num: 2}); // return
 
 ### Configuration
 
-Edit configure
+Edit configure object.
 
 ```javascript
-import {configure} from 'i18n-text-simply';
+import {configure} from 'simple-i18n-text';
 
-// set the use messages locale
+// set locale for the target translation language
 // default 'en-US'
 configure.locale = 'en-US';
 
@@ -66,7 +66,7 @@ configure.locale = 'en-US';
 configure.replacerTokenLeft = '%';
 configure.replacerTokenRight = '%';
 
-// set the plural translation parameter key
+// set the parameter key for plural translation
 // default "num"
 // (e.g. set "n" to pt('%n%冊の本', {n: 1}) 
 configure.pluralParamKey = 'num';
