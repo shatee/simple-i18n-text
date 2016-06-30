@@ -13,7 +13,7 @@ npm install simple-i18n-text
 
 ### Basis
 
-For basic translation, use function `t`.
+For basic translation, use function `t`.  
 To replace partial text, use placeholder.
 
 ```javascript
@@ -32,7 +32,7 @@ t('%name%はかわいい。', {name: 'Sarah'}); // returns: 'Sarah is cute.'
 
 ### Plural Translation
 
-In case of translation plurals, use function `pt`.
+In case of translation plurals, use function `pt`.  
 Then use parameter `num` for the numbers.
 
 ```javascript
