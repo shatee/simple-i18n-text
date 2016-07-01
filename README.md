@@ -45,8 +45,8 @@ translator.setMessages('en-US', {
   ]
 });
 
-pt('%name%さんが%num%個の動画を投稿しました', {num: 1}); // returns: 'Paul uploaded a video'
-pt('%name%さんが%num%個の動画を投稿しました', {num: 2}); // returns: 'Paul uploaded 2 videos'
+pt('%name%さんが%num%個の動画を投稿しました', {name: 'Paul', num: 1}); // returns: 'Paul uploaded a video'
+pt('%name%さんが%num%個の動画を投稿しました', {name: 'Paul', num: 2}); // returns: 'Paul uploaded 2 videos'
 ```
 
 ### Configuration
