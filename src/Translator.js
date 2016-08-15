@@ -59,7 +59,7 @@ export default class Translator {
    */
   _assign(text, params) {
     for (const key in params) {
-      text = text.replace(new RegExp(this._configure.placeholderTokenLeft + key + this._configure.placeholderTokenRight), encodeURIComponent(params[key]));
+      text = text.replace(new RegExp(this._configure.placeholderTokenLeft + key + this._configure.placeholderTokenRight), params[key]);
     }
     return text;
   }

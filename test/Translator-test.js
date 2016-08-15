@@ -46,10 +46,10 @@ describe('Translator', () => {
 
     it('has params', () => {
       const translated = translator.translate('%name%は%target%を食べていた', {
-        name: 'John',
-        target: 'orange'
+        name: '佐藤',
+        target: 'オレンジ'
       });
-      assert('John was eating an orange' === translated);
+      assert('佐藤 was eating an オレンジ' === translated);
     });
 
     it('use locale option to chinese taiwan', () => {
@@ -71,16 +71,16 @@ describe('Translator', () => {
   describe('Translator#pluralTranslate', () => {
     it('get plural translated text', () => {
       const translated1 = translator.pluralTranslate('%name%さんが%num%個の動画を投稿しました', {
-        name: 'Paul',
+        name: '鈴木',
         num: 1
       });
-      assert('Paul uploaded a video' === translated1);
+      assert('鈴木 uploaded a video' === translated1);
 
       const translated2 = translator.pluralTranslate('%name%さんが%num%個の動画を投稿しました', {
-        name: 'Paul',
+        name: '鈴木',
         num: 2
       });
-      assert('Paul uploaded 2 videos' === translated2);
+      assert('鈴木 uploaded 2 videos' === translated2);
     });
 
     it('use translate text', () => {
