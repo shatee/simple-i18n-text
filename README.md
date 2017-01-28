@@ -20,8 +20,8 @@ To replace partial text, use placeholder.
 import {translator, t} from 'simple-i18n-text';
 
 translator.setMessages('en-US', {
-  ['彼はかっこいい。']: 'He is cool.',
-  ['%name%はかわいい。']: '%name% is cute.'
+  '彼はかっこいい。': 'He is cool.',
+  '%name%はかわいい。': '%name% is cute.'
 });
 
 t('彼はかっこいい。'); // returns: 'He is cool.'
@@ -39,7 +39,7 @@ Then use parameter `num` for the numbers.
 import {translator, pt} from 'simple-i18n-text';
 
 translator.setMessages('en-US', {
-  ['%name%さんが%num%個の動画を投稿しました']: [
+  '%name%さんが%num%個の動画を投稿しました': [
     '%name% uploaded a video',
     '%name% uploaded %num% videos'
   ]
