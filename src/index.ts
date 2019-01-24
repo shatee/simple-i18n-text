@@ -1,4 +1,4 @@
-import configure from './configure';
+import { configure } from './configure';
 import Translator from './Translator';
 
 const translator = new Translator(configure);
