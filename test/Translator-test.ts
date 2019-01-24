@@ -1,6 +1,3 @@
-'use strict';
-
-import assert from 'power-assert';
 import configure from '../src/configure';
 import Translator from '../src/Translator';
 
@@ -39,64 +36,64 @@ describe('Translator', () => {
   });
 
   describe('Translator#translate', () => {
-    it('get translated text', () => {
+    test('get translated text', () => {
       const translated = translator.translate('焼きリンゴ');
-      assert('a baked apple' === translated);
+      expect(translated).toBe('a baked apple');
     });
 
-    it('has params', () => {
+    test('has params', () => {
       const translated = translator.translate('%name%は%target%を食べていた', {
         name: '佐藤',
         target: 'オレンジ'
       });
-      assert('佐藤 was eating an オレンジ' === translated);
+      expect(translated).toBe('佐藤 was eating an オレンジ');
     });
 
-    it('use locale option to chinese taiwan', () => {
+    test('use locale option to chinese taiwan', () => {
       const translated = translator.translate('焼きリンゴ', {}, {locale: 'zh-TW'});
-      assert('燒烤蘋果' === translated);
+      expect(translated).toBe('燒烤蘋果');
     });
 
-    it('unknown locale (to source text)', () => {
+    test('unknown locale (to source text)', () => {
       const translated = translator.translate('焼きリンゴ', {}, {locale: 'fr-FR'});
-      assert('焼きリンゴ' === translated);
+      expect(translated).toBe('焼きリンゴ');
     });
 
-    it('undefined text', () => {
+    test('undefined text', () => {
       const translated = translator.translate('存在しない文言');
-      assert('存在しない文言' === translated);
+      expect(translated).toBe('存在しない文言');
     });
   });
 
   describe('Translator#pluralTranslate', () => {
-    it('get plural translated text', () => {
+    test('get plural translated text', () => {
       const translated1 = translator.pluralTranslate('%name%さんが%num%個の動画を投稿しました', {
         name: '鈴木',
         num: 1
       });
-      assert('鈴木 uploaded a video' === translated1);
+      expect(translated1).toBe('鈴木 uploaded a video');
 
       const translated2 = translator.pluralTranslate('%name%さんが%num%個の動画を投稿しました', {
         name: '鈴木',
         num: 2
       });
-      assert('鈴木 uploaded 2 videos' === translated2);
+      expect(translated2).toBe('鈴木 uploaded 2 videos');
     });
 
-    it('use translate text', () => {
+    test('use translate text', () => {
       const translated = translator.pluralTranslate('焼きリンゴ');
-      assert('a baked apple' === translated);
+      expect(translated).toBe('a baked apple');
     });
 
-    it('use locale option to chinese taiwan', () => {
+    test('use locale option to chinese taiwan', () => {
       const translated = translator.pluralTranslate('%name%さんが%num%個の動画を投稿しました', {
         name: 'Paul',
         num: 2
       }, {locale: 'zh-TW'});
-      assert('Paul2個動畫投稿了' === translated);
+      expect(translated).toBe('Paul2個動畫投稿了');
     });
 
-    it('custom context', () => {
+    test('custom context', () => {
       configure.placeholderTokenLeft = '{{';
       configure.placeholderTokenRight = '}}';
       configure.pluralParamKey = 'n';
@@ -104,7 +101,7 @@ describe('Translator', () => {
       const translated = translator.pluralTranslate('私は{{n}}冊の本を持っています', {
         n: 10
       });
-      assert('I have 10 books' === translated);
+      expect(translated).toBe('I have 10 books');
     });
   });
 
