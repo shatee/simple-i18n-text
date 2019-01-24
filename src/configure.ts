@@ -5,7 +5,7 @@ export type Configure = {
   pluralParamKey: string;
 }
 
-export default {
+export const configure = {
   locale: 'en-US',
   placeholderTokenLeft: '%',
   placeholderTokenRight: '%',
