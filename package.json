@@ -6,7 +6,7 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "lint": "eslint ./src",
+    "lint": "eslint ./src/**/*.ts",
     "prepublish": "npm run build",
     "test": "jest ./test"
   },
@@ -26,12 +26,11 @@
   "homepage": "https://github.com/shatee/translate-js#readme",
   "devDependencies": {
     "@types/jest": "^24.0.15",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
     "eslint": "^6.0.0",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.2"
-  },
-  "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^1.11.0"
   }
 }
