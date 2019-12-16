@@ -10,7 +10,7 @@ export default class Messages {
   }
 
   public getText(sourceText: string, isPlural: boolean) {
-    if (!this.messages.hasOwnProperty(sourceText)) {
+    if (!Object.prototype.hasOwnProperty.call(this.messages, sourceText)) {
       return sourceText;
     }
 
