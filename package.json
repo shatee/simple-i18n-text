@@ -1,6 +1,6 @@
 {
   "name": "simple-i18n-text",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "i18n simple text translation",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
